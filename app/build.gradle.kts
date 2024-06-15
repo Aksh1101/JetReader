@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -71,4 +73,39 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+
+    //Dagger - Hilt
+    implementation ("com.google.dagger:hilt-android:2.51.1")
+
+    //implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03" )
+    // Dagger - Hilt
+    kapt ("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    kapt ("androidx.hilt:hilt-compiler:1.2.0")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    //material icons - use with caution!
+    implementation ("androidx.compose.material:material-icons-extended:1.6.8")
+    // Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
+
+    // Coroutine Lifecycle Scopes
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
+   // implementation ("androidx.lifecycle:-lifecycle-runtime-ktx:2.8.2")
+
+    // Coil
+    implementation ("io.coil-kt:coil-compose:2.6.0")
+
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+
+    // OkHttp
+    implementation ("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")
+
+    // JSON Converter
+    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
+
+
 }
