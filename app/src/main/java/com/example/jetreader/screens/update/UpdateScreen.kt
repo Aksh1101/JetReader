@@ -1,8 +1,9 @@
 package com.example.jetreader.screens.update
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 
 @Composable
-fun BookUpdateScreen(){
+fun UpdateScreen(navController: NavController){
 
 }
