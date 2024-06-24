@@ -3,6 +3,7 @@ package com.example.jetreader.screens.login
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,12 +37,18 @@ import com.example.jetreader.components.ReaderLogo
 
 @Composable
 fun LoginScreen(navController: NavController){
+    val showLoginForm = rememberSaveable{ mutableStateOf(true) }
+
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally){
             ReaderLogo(modifier = Modifier.padding(top = 100.dp))
-            UserForm(loading = false, isCreateAccount = false)
+            if (showLoginForm.value) UserForm(loading = false, isCreateAccount = false){email , password ->}
+            else{
+                UserForm(loading = false , isCreateAccount = true){email , password ->}
+            }
         }
+        Spacer(modifier = Modifier.height(15.dp))
     }
 
 }
