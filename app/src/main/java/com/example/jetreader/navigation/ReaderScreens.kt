@@ -1,10 +1,5 @@
 package com.example.jetreader.navigation
 
-import android.text.LoginFilter
-import android.window.SplashScreen
-import com.example.jetreader.screens.home.Home
-import okhttp3.Route
-
 enum class ReaderScreens {
     SplashScreen,
     LoginScreen,
