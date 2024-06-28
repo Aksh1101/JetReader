@@ -39,16 +39,24 @@ import com.example.jetreader.R
 import com.example.jetreader.components.EmailInput
 import com.example.jetreader.components.PasswordInput
 import com.example.jetreader.components.ReaderLogo
+import com.example.jetreader.navigation.ReaderScreens
+import com.example.jetreader.screens.home.HomeScreen
 
 @Composable
-fun LoginScreen(navController: NavController){
+fun LoginScreen(navController: NavController,
+                viewModel: LoginScreenViewModel = androidx.lifecycle.viewmodel.compose.viewModel()){
     val showLoginForm = rememberSaveable{ mutableStateOf(true) }
 
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally){
             ReaderLogo(modifier = Modifier.padding(top = 100.dp))
-            if (showLoginForm.value) UserForm(loading = false, isCreateAccount = false){email , password ->}
+            if (showLoginForm.value) UserForm(loading = false, isCreateAccount = false){email , password ->
+                viewModel.signInWithEmailAndPassword(email , password){
+                    navController.navigate(ReaderScreens.HomeScreen.name)
+                }
+            }
+
             else{
                 UserForm(loading = false , isCreateAccount = true){email , password ->}
             }
