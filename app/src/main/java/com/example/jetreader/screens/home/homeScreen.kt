@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun HomeScreen(navController: NavController){
-    Text(text = "Welcome")
+    Text(text = "Welcome to the home screen")
+    Text(text = "India wins the wolrd cup ")
 
 }
