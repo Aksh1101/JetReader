@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -50,6 +51,8 @@ class LoginScreenViewModel :ViewModel() {
             auth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful){
+                        val displayName = task.result?.user?.email?.split('@')?.get(0)
+                        createUser(displayName)
                         home()
                     }else{
                         Log.d("FB","createUserWithEmailAndPassword :${task.result.toString()}")
@@ -58,6 +61,17 @@ class LoginScreenViewModel :ViewModel() {
 
                 }
         }
+
+    }
+
+    private fun createUser(displayName: String?) {
+        val userId = auth.currentUser?.uid
+        val user = mutableMapOf<String ,Any>()
+        user["user_id"] = userId.toString()
+        user["display_name"] = displayName.toString()
+
+        FirebaseFirestore.getInstance().collection("users")
+            .add(user)
 
     }
 
